@@ -11,10 +11,10 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 				<fixed-frequency frequency="1" timeUnit="MINUTES"/>
 			</scheduling-strategy>
 		</scheduler>
-		<logger level="INFO" doc:name="Logger" doc:id="b729a4d1-ad1f-4a60-8a60-818ce641e836" message='#["Processing Started for git-merge-workflow-demoFlow"]'/>
-		<http:request method="GET" doc:name="Request" doc:id="3117d46b-c0e9-4377-86ad-ee5fd5c370fd" url='#["https://dummyjson.com/products"]'/>
-		<logger level="INFO" doc:name="Logger" doc:id="856e796c-d48f-4607-a3c9-ae64c5d0347f" message='#["After Request connector"]'/>
-		<ee:transform doc:name="Transform Message" doc:id="f0062fad-150e-4dbc-9458-96866e626e2e" >
+		<logger level="INFO" doc:name="Processing start" doc:id="b729a4d1-ad1f-4a60-8a60-818ce641e836" message='#["Processing Started for git-merge-workflow-demoFlow"]'/>
+		<http:request method="GET" doc:name="Calling Products API" doc:id="3117d46b-c0e9-4377-86ad-ee5fd5c370fd" url='#["https://dummyjson.com/products"]'/>
+		<logger level="INFO" doc:name="After Request connector" doc:id="856e796c-d48f-4607-a3c9-ae64c5d0347f" message='#["After Request connector"]'/>
+		<ee:transform doc:name="Total Products Count" doc:id="f0062fad-150e-4dbc-9458-96866e626e2e" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -24,6 +24,6 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="fbcdbaa9-5a85-4819-9eb3-843778e78571" message='#["Processing End for git-merge-workflow-demoFlow"]'/>
+		<logger level="INFO" doc:name="Processing End" doc:id="fbcdbaa9-5a85-4819-9eb3-843778e78571" message='#["Processing End for git-merge-workflow-demoFlow"]'/>
 	</flow>
 </mule>
