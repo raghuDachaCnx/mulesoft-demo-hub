@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="git-merge-workflow-demoFlow" doc:id="3b8fcec0-1525-48cc-acee-4703d9494412" >
+		<scheduler doc:name="Scheduler" doc:id="f144eaaf-bb7c-4249-8a85-1ec26856dea6" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="1" timeUnit="MINUTES"/>
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="b729a4d1-ad1f-4a60-8a60-818ce641e836" message='#["Processing Started for git-merge-workflow-demoFlow"]'/>
+		<http:request method="GET" doc:name="Request" doc:id="3117d46b-c0e9-4377-86ad-ee5fd5c370fd" url='#["https://dummyjson.com/products"]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="856e796c-d48f-4607-a3c9-ae64c5d0347f" message='#["After Request connector"]'/>
+		<ee:transform doc:name="Transform Message" doc:id="f0062fad-150e-4dbc-9458-96866e626e2e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	total_number_of_products : sizeOf(payload.products)
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="fbcdbaa9-5a85-4819-9eb3-843778e78571" message='#["Processing End for git-merge-workflow-demoFlow"]'/>
+	</flow>
+</mule>
