@@ -24,6 +24,6 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Processing end" doc:id="fbcdbaa9-5a85-4819-9eb3-843778e78571" message='#["Processing End for git-merge-workflow-demoFlow"]'/>
+		<logger level="INFO" doc:name="Processing End" doc:id="fbcdbaa9-5a85-4819-9eb3-843778e78571" message='#["Processing End for git-merge-workflow-demoFlow"]'/>
 	</flow>
 </mule>
